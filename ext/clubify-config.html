@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="fancy-settings/source/lib/default.css">
+
+    <link rel="stylesheet" href="fancy-settings/source/css/main.css">
+    <link rel="stylesheet" href="fancy-settings/source/css/setting.css">
+    <link rel="stylesheet" href="fancy-settings/source/custom.css">
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <div id="sidebar" class="fancy">
+      <img id="icon" src="icon_128.png"/>
+      <h1 id="settings-label">Clubify</h1>
+      <div id="tab-container">
+        <div id="search-tab"
+        class="tab">Transforms <strong>ch[story-id]</strong> mentions
+        to <strong>Clubhouse</strong> links.</br></br> Changes are saved automatically.</div>
+      </div>
+    </div>
+
+    <div id="content">
+      <div class="tab-content show">
+        <h2>Settings</h2>
+        <table class="setting group">
+          <tr>
+            <td class="setting group-name">Pages</td>
+            <td class="setting group-content">
+              <div class="setting bundle text">
+                <div class="setting container text">
+                  <label class="setting label text" for="workspace">Workspace</label>
+                  <input class="setting element text" type="text" name="workspace" id="workspace"
+                         placeholder="your-workspace-name" size="100"/>
+                </div>
+              </div>
+              <div class="setting bundle description">
+                Optional, workspace to use in the links.
+                e.g.: https://app.clubhouse.io/your-workspace-name/...
+                If empty, Clubhouse will redirect you to the right workspace,
+                but you can avoid this extra redirect by specifying it here.
+              </div>
+              <div class="setting bundle text">
+                <div class="setting container text">
+                  <label class="setting label text" for="urlPatterns">URL Patterns</label>
+                  <input class="setting element text" type="text" name="urlPatterns"
+                         id="urlPatterns" size="100" placeholder="git,ci"/>
+                </div>
+              </div>
+              <div class="setting bundle description">
+                Comma-separated, can be any portion of the url. For instance, to match any git
+                server (github, gitlab, etc.), use "git". To restrict it to pull requests, use
+                "git.example.com/myorg/myproject/pull". Regexes NOT currently supported.
+              </div>
+              <div class="setting bundle text">
+                <div class="setting container text">
+                  <label class="setting label text" for="ignoredElements">Ignore Elements</label>
+                  <input type="text" name="ignoredElements" id="ignoredElements"
+                         size="100" placeholder="a,textarea,code"/>
+                </div>
+              </div>
+              <div class="setting bundle description">
+                Comma-separated elements that you would like to ignore. If you know you won't need
+                to Clubify any links in a particular element this could speed up the process.
+                Example: "a,textarea,code,div"
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="setting group-name">Links</td>
+            <td class="setting group-content">
+              <div class="setting bundle text">
+                <div class="setting container text">
+                  <label class="setting label text" for="newWindow">Open Links in a new window</label>
+                  <input type="checkbox" name="newWindow" id="newWindow" />
+                </div>
+              </div>
+              <div class="setting bundle description"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 node_modules
 npm-debug.log
-jirafy.zip
-.idea/workspace.xml
-
-*.iws
+clubify.zip
+.idea/
+.DS_Store
+*.iml
+*.temp

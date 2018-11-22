@@ -1,8 +1,8 @@
 {
-  "name": "Jirafy",
+  "name": "Clubify",
   "manifest_version": 2,
-  "version": "1.1",
-  "description": "Linkifies JIRA ticket numbers on select pages.  Click the 'Options' link to configure pages to parse and JIRA projects to link.",
+  "version": "1.0",
+  "description": "Transforms references Clubhouse stories 'ch<story-id>' to links on select pages.",
   "icons": {
     "128": "icon_128.png",
     "48": "icon_48.png",
@@ -13,7 +13,7 @@
   },
   "page_action": {
     "default_icon": "icon_16.png",
-    "default_title": "View Jirafy settings."
+    "default_title": "View Clubify settings."
   },
   "permissions": ["http://*/", "https://*/", "tabs"],
   "content_scripts": [
@@ -24,11 +24,11 @@
       ],
       "js": [
         "jquery-1.7.2.min.js",
-        "jirafy.js"
+        "clubify.js"
       ],
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "all_frames": false
     }
   ],
-  "options_page": "jirafy-config.html"
+  "options_page": "clubify-config.html"
 }
