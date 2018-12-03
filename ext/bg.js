@@ -36,15 +36,6 @@ const getWithDefault = (field, defaultValue) => {
   return value;
 };
 
-// Called when the url of a tab changes.
-const checkForValidUrl = (tabId, changeInfo, tab) => {
-  if (matchesAnyUrlPatterns(tab.url, getUrlPatterns())) {
-    chrome.pageAction.show(tabId);
-    return;
-  }
-  chrome.pageAction.hide(tabId);
-};
-
 // Check to see if the url should have its content clubified.
 const matchesAnyUrlPatterns = (url, urlPatterns) => {
   if (!urlPatterns) {
@@ -58,9 +49,6 @@ const matchesAnyUrlPatterns = (url, urlPatterns) => {
   }
   return false;
 };
-
-// Listen for any changes to the URL of any tab.
-chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
 // When the page action is clicked, go to the config page.
 chrome.pageAction.onClicked.addListener(() => {
