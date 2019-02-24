@@ -24,6 +24,4 @@ const restoreOptions = () => {
   newWindow.checked = localStorage['newWindow'] || false;
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  restoreOptions();
-});
+document.addEventListener('DOMContentLoaded', restoreOptions);
