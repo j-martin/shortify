@@ -23,7 +23,6 @@
         "https://*/*"
       ],
       "js": [
-        "jquery-1.7.2.min.js",
         "clubify.js"
       ],
       "run_at": "document_end",
