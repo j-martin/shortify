@@ -6,7 +6,7 @@ set -u
 
 _main() {
   pushd ext
-  zip -r ../clubify.zip .
+  zip ../clubify.zip . -r -x .DS_Store
   popd
 }
 
