@@ -18,13 +18,10 @@ const restoreOptions = () => {
   ignoredElements.onchange = saveOptions;
   newWindow.onchange = saveOptions;
 
-  workspace.value = localStorage['workspace'];
-  urlPatterns.value = localStorage['urlPatterns'];
-  ignoredElements.value = localStorage['ignoredElements'];
-
-  if (localStorage['newWindow'] === 'true') {
-    newWindow.checked = true;
-  }
+  workspace.value = localStorage['workspace'] || null;
+  urlPatterns.value = localStorage['urlPatterns'] || null;
+  ignoredElements.value = localStorage['ignoredElements'] || null;
+  newWindow.checked = localStorage['newWindow'] || false;
 };
 
 document.addEventListener('DOMContentLoaded', () => {
