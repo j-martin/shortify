@@ -69,26 +69,23 @@ const addDebouncedEventListener = (obj, eventType, listener, delay) => {
  * Methods to convert the text to URLS
  */
 const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
-  const regex = getRegex(),
-    ignore = ['a', 'textarea'].concat(ignoredElements);
+  const ignore = ['a', 'textarea', 'svg'].concat(ignoredElements);
 
   startNode = (startNode) ? startNode : document.getElementsByTagName('body')[0];
 
-  getMatches(startNode, regex, (node, story) => {
+  getMatches(startNode, /\[?ch(\d+)\]?/ig, (all, story) => {
     const clubhouseLink = document.createElement('a');
 
-    clubhouseLink.href = `${baseUrl}/${story.replace('ch', '')}`;
-    clubhouseLink.textContent = story;
+    clubhouseLink.href = `${baseUrl}/${story}`;
+    clubhouseLink.textContent = all;
 
     if (newWindow === 'true') {
       clubhouseLink.target = '_blank';
     }
 
-    node.parentNode.insertBefore(clubhouseLink, node.nextSibling);
+    return clubhouseLink;
   }, ignore);
 };
-
-const getRegex = () => new RegExp(/ch(\d+)/, 'g');
 
 const getMatches = (parent, regex, callback, ignore) => {
   let node = parent.firstChild;
@@ -106,20 +103,17 @@ const getMatches = (parent, regex, callback, ignore) => {
         break;
 
       case 3:
-        node.data.replace(regex, function (all) {
-          // If this one has a browse prefix: don't replace anything.
-          const args = [].slice.call(arguments),
-            //if two are found in the same node we need to use the new offset for all except the first
-            offset = (node.data.indexOf(all) >= 0) ? node.data.indexOf(all) : args[args.length - 2],
-            newNode = node.splitText(offset);
-
-          newNode.data = newNode.data.substr(all.length);
-
-          callback.apply(window, [node].concat(args));
-
-          node = newNode;
-
-        });
+        const match = regex.exec(node.data);
+        if (match) {
+          const newNode = callback.apply(window, match);
+          if (newNode) {
+            const newText = node.splitText(match.index);
+            node.parentNode.insertBefore(newNode, newText);
+            newText.data = newText.data.slice(match[0].length);
+            regex.lastIndex = 0;
+            node = newText;
+          }
+        }
         break;
     }
   } while (node = node.nextSibling);
