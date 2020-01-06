@@ -15,7 +15,7 @@
     "default_icon": "icon_16.png",
     "default_title": "View Clubify settings."
   },
-  "permissions": ["activeTab"],
+  "permissions": [],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
