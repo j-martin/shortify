@@ -1,9 +1,8 @@
 chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
-
-  let workspace = getWithDefault('workspace');
+  let workspace = getWithDefault("workspace");
   let urlPatterns = getUrlPatterns();
-  let ignoredElements = getWithDefault('ignoredElements');
-  let newWindow = getWithDefault('newWindow', 'false');
+  let ignoredElements = getWithDefault("ignoredElements");
+  let newWindow = getWithDefault("newWindow", "false");
   if (!matchesAnyUrlPatterns(sender.tab.url, urlPatterns)) {
     sendResponse({
       enabled: false
@@ -16,7 +15,7 @@ chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
       workspace,
       urlPatterns,
       ignoredElements,
-      newWindow,
+      newWindow
     });
   } else {
     sendResponse({
@@ -25,7 +24,7 @@ chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
   }
 });
 
-const getUrlPatterns = () => getWithDefault('urlPatterns', 'git,ci');
+const getUrlPatterns = () => getWithDefault("urlPatterns", "git,ci");
 
 const getWithDefault = (field, defaultValue) => {
   let value = localStorage.getItem(field);
@@ -52,5 +51,5 @@ const matchesAnyUrlPatterns = (url, urlPatterns) => {
 
 // When the page action is clicked, go to the config page.
 chrome.pageAction.onClicked.addListener(() => {
-  chrome.tabs.create({ "url": "clubify-config.html" });
+  chrome.tabs.create({ url: "clubify-config.html" });
 });

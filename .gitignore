@@ -1,7 +1,8 @@
 node_modules
 npm-debug.log
-clubify.zip
+*.zip
 .idea/
 .DS_Store
 *.iml
 *.temp
+*.log

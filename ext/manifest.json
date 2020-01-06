@@ -9,26 +9,17 @@
     "16": "icon_16.png"
   },
   "background": {
-    "scripts": [
-      "bg.js"
-    ]
+    "scripts": ["bg.js"]
   },
   "page_action": {
     "default_icon": "icon_16.png",
     "default_title": "View Clubify settings."
   },
-  "permissions": [
-    "activeTab"
-  ],
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": [
-        "clubify.js"
-      ],
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["clubify.js"],
       "run_at": "document_end",
       "all_frames": false
     }
