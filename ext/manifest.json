@@ -21,9 +21,11 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["clubify.js"],
+      "css": ["clubify.css"],
       "run_at": "document_end",
       "all_frames": false
     }
   ],
+  "web_accessible_resources": ["icon_*.png"],
   "options_page": "clubify-config.html"
 }
