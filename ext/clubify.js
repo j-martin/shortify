@@ -96,7 +96,7 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
       const url = `${baseUrl}/${story}`;
 
       const clubhouseLink = document.createElement("a");
-      clubhouseLink.onclick = (e) => {
+      clubhouseLink.onclick = e => {
         e.preventDefault();
         if (newWindow === "true") {
           window.open(url);
@@ -122,17 +122,17 @@ const getMatches = (parent, regex, callback, ignore) => {
 
   if (node === null) return parent;
 
-  const ignoreTags = ignore.filter((selector) => !selector.startsWith("."));
+  const ignoreTags = ignore.filter(selector => !selector.startsWith("."));
   const ignoreClasses = ignore
-    .filter((selector) => selector.startsWith("."))
-    .map((selector) => selector.substr(1));
+    .filter(selector => selector.startsWith("."))
+    .map(selector => selector.substr(1));
 
   do {
     switch (node.nodeType) {
       case 1:
         if (
           ignoreTags.indexOf(node.tagName.toLowerCase()) > -1 ||
-          ignoreClasses.some((cls) => node.classList.contains(cls))
+          ignoreClasses.some(cls => node.classList.contains(cls))
         ) {
           continue;
         }
