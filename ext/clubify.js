@@ -78,7 +78,8 @@ const addDebouncedEventListener = (obj, eventType, listener, delay) => {
  * Methods to convert the text to URLS
  */
 const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
-  const ignore = ["a", "textarea", "svg"].concat(ignoredElements);
+  // make sure replacing hyperlinks have class "clubify" to avoid infinite loop
+  const ignore = [".clubify", "textarea", "svg"].concat(ignoredElements);
 
   startNode = startNode ? startNode : document.getElementsByTagName("body")[0];
 
@@ -86,14 +87,29 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
     startNode,
     /\[?ch(\d+)\]?/gi,
     (all, story) => {
+      const clubhouseIcon = document.createElement("img");
+      clubhouseIcon.src = chrome.runtime.getURL("icon_16.png");
+
+      const clubhouseSpan = document.createElement("span");
+      clubhouseSpan.textContent = all;
+
+      const url = `${baseUrl}/${story}`;
+
       const clubhouseLink = document.createElement("a");
+      clubhouseLink.onclick = (e) => {
+        e.preventDefault();
+        if (newWindow === "true") {
+          window.open(url);
+        } else {
+          window.location = url;
+        }
+      };
 
-      clubhouseLink.href = `${baseUrl}/${story}`;
-      clubhouseLink.textContent = all;
-
-      if (newWindow === "true") {
-        clubhouseLink.target = "_blank";
-      }
+      clubhouseLink.classList.add("clubify");
+      clubhouseLink.href = url;
+      clubhouseLink.appendChild(clubhouseIcon);
+      clubhouseLink.appendChild(clubhouseSpan);
+      clubhouseLink.title = `click to open clubhouse ticket ch${story}`;
 
       return clubhouseLink;
     },
@@ -106,10 +122,18 @@ const getMatches = (parent, regex, callback, ignore) => {
 
   if (node === null) return parent;
 
+  const ignoreTags = ignore.filter((selector) => !selector.startsWith("."));
+  const ignoreClasses = ignore
+    .filter((selector) => selector.startsWith("."))
+    .map((selector) => selector.substr(1));
+
   do {
     switch (node.nodeType) {
       case 1:
-        if (ignore.indexOf(node.tagName.toLowerCase()) > -1) {
+        if (
+          ignoreTags.indexOf(node.tagName.toLowerCase()) > -1 ||
+          ignoreClasses.some((cls) => node.classList.contains(cls))
+        ) {
           continue;
         }
 
