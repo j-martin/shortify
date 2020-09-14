@@ -99,7 +99,7 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
       clubhouseLink.onclick = e => {
         e.preventDefault();
         if (newWindow === "true") {
-          window.open(url);
+          window.open(url, '_blank');
         } else {
           window.location = url;
         }
