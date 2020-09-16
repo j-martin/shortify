@@ -109,7 +109,7 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
       clubhouseLink.href = url;
       clubhouseLink.appendChild(clubhouseIcon);
       clubhouseLink.appendChild(clubhouseSpan);
-      clubhouseLink.title = `click to open clubhouse ticket ch${story}`;
+      clubhouseLink.title = `Click to open the Clubhouse story ch${story}.`;
 
       return clubhouseLink;
     },
