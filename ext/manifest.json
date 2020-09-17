@@ -1,7 +1,7 @@
 {
   "name": "Clubify",
   "manifest_version": 2,
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Transforms text references to Clubhouse stories (e.g.: 'ch<story-id>') to clickable links to Clubhouse.",
   "icons": {
     "128": "icon_128.png",
