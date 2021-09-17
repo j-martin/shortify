@@ -18,7 +18,7 @@ chrome.extension.sendRequest({ method: "getClubifySettings" }, res => {
   }
 
   const segment = res.workspace ? `${res.workspace}/` : "";
-  baseUrl = `https://app.clubhouse.io/${segment}story`;
+  baseUrl = `https://app.shortcut.com/${segment}story`;
   targetWindow = res.newWindow;
   window.addEventListener("load", loadAjaxPage, false);
 
@@ -87,16 +87,16 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
     startNode,
     /\[?(ch|sc-)(\d+)\]?/gi,
     (all, _, story) => {
-      const clubhouseIcon = document.createElement("img");
-      clubhouseIcon.src = chrome.runtime.getURL("icon_128.png");
+      const shortcutIcon = document.createElement("img");
+      shortcutIcon.src = chrome.runtime.getURL("icon_128.png");
 
-      const clubhouseSpan = document.createElement("span");
-      clubhouseSpan.textContent = all;
+      const shortcutSpan = document.createElement("span");
+      shortcutSpan.textContent = all;
 
       const url = `${baseUrl}/${story}`;
 
-      const clubhouseLink = document.createElement("a");
-      clubhouseLink.onclick = e => {
+      const shortcutLink = document.createElement("a");
+      shortcutLink.onclick = e => {
         e.preventDefault();
         if (newWindow === "true") {
           window.open(url, '_blank');
@@ -105,13 +105,13 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
         }
       };
 
-      clubhouseLink.classList.add("clubify");
-      clubhouseLink.href = url;
-      clubhouseLink.appendChild(clubhouseIcon);
-      clubhouseLink.appendChild(clubhouseSpan);
-      clubhouseLink.title = `Click to open the Clubhouse story ch${story}.`;
+      shortcutLink.classList.add("clubify");
+      shortcutLink.href = url;
+      shortcutLink.appendChild(shortcutIcon);
+      shortcutLink.appendChild(shortcutSpan);
+      shortcutLink.title = `Click to open the Shortcut story ch${story}.`;
 
-      return clubhouseLink;
+      return shortcutLink;
     },
     ignore
   );
