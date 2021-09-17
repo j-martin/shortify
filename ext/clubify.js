@@ -85,7 +85,7 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
 
   getMatches(
     startNode,
-    /\[?(ch|sc-)(\d+)\]?/gi,
+    /\[?(ch|sc-|sc)(\d+)\]?/gi,
     (all, _, story) => {
       const shortcutIcon = document.createElement("img");
       shortcutIcon.src = chrome.runtime.getURL("icon_128.png");
