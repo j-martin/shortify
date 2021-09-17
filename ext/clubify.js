@@ -85,8 +85,8 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
 
   getMatches(
     startNode,
-    /\[?ch(\d+)\]?/gi,
-    (all, story) => {
+    /\[?(ch|sc-)(\d+)\]?/gi,
+    (all, _, story) => {
       const clubhouseIcon = document.createElement("img");
       clubhouseIcon.src = chrome.runtime.getURL("icon_128.png");
 
