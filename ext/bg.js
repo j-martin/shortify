@@ -9,7 +9,7 @@ chrome.extension.onRequest.addListener((request, sender, sendResponse) => {
     });
     return;
   }
-  if (request.method === "getClubifySettings") {
+  if (request.method === "getShortifySettings") {
     sendResponse({
       enabled: true,
       workspace,
@@ -51,5 +51,5 @@ const matchesAnyUrlPatterns = (url, urlPatterns) => {
 
 // When the page action is clicked, go to the config page.
 chrome.pageAction.onClicked.addListener(() => {
-  chrome.tabs.create({ url: "clubify-config.html" });
+  chrome.tabs.create({ url: "shortify-config.html" });
 });

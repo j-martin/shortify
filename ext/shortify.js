@@ -9,7 +9,7 @@ let targetWindow;
 /*
  * Extension Settings
  */
-chrome.extension.sendRequest({ method: "getClubifySettings" }, res => {
+chrome.extension.sendRequest({ method: "getShortifySettings" }, res => {
   if (!res.enabled) {
     return;
   }
@@ -78,8 +78,8 @@ const addDebouncedEventListener = (obj, eventType, listener, delay) => {
  * Methods to convert the text to URLS
  */
 const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
-  // make sure replacing hyperlinks have class "clubify" to avoid infinite loop
-  const ignore = [".clubify", "textarea", "svg"].concat(ignoredElements);
+  // make sure replacing hyperlinks have class "shortify" to avoid infinite loop
+  const ignore = [".shortify", "textarea", "svg"].concat(ignoredElements);
 
   startNode = startNode ? startNode : document.getElementsByTagName("body")[0];
 
@@ -105,7 +105,7 @@ const replaceStoryIdsWithLinks = (newWindow, ignoredElements, startNode) => {
         }
       };
 
-      shortcutLink.classList.add("clubify");
+      shortcutLink.classList.add("shortify");
       shortcutLink.href = url;
       shortcutLink.appendChild(shortcutIcon);
       shortcutLink.appendChild(shortcutSpan);

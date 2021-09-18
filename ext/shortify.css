@@ -1,9 +1,9 @@
-.clubify {
+.shortify {
   color: rgb(99, 33, 220);
   position: relative;
 }
 
-.clubify img {
+.shortify img {
   height: 100%;
   opacity: 0;
   position: absolute;
@@ -13,7 +13,7 @@
   pointer-events: none;
 }
 
-.clubify:hover img {
+.shortify:hover img {
   opacity: 1;
   left: 0;
 }
