@@ -1,7 +1,7 @@
 {
   "name": "Shortify",
   "manifest_version": 2,
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Formerly Clubify. Transforms text references to Shortcut stories (e.g.: 'sc-<story-id>') to clickable links to Shortcut.",
   "icons": {
     "128": "icon_128.png",
