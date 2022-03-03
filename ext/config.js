@@ -23,7 +23,7 @@ const restoreOptions = () => {
   workspace.value = localStorage["workspace"] || null;
   urlPatterns.value = localStorage["urlPatterns"] || null;
   ignoredElements.value = localStorage["ignoredElements"] || null;
-  newWindow.checked = localStorage["newWindow"] || false;
+  newWindow.checked = (localStorage["newWindow"] === "true");
 };
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
